@@ -1,0 +1,28 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./blue-surface-with-study-tools_23-2147864592.avif'); /* Path to your image */
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px); /* Apply blur to the background */
+  z-index: -1; /* Ensure it stays behind the content */
+}
+ 
+ 
+ 
+.header {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  padding-top: 56px; /* Height of the navbar */
+  padding-bottom: 100px; /* Height of the navbar */
+  scroll-behavior: smooth;
+}
+
