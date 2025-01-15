@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setId } from "../redux/state/id/idSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setId, setToken } from "../redux/state/store/storeSlice";
+
+
 
 function Login() {
+
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
+    //const [token, setToken] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    
 
     async function signIn(event) {
         event.preventDefault();        
@@ -30,13 +36,19 @@ function Login() {
             });
             
             const jwtToken = response.data.token; // Adjust this based on your backend response structure
-            console.log(jwtToken);
-            setToken(jwtToken);
-            localStorage.setItem("token", jwtToken);
-
             const userId = response.data.id; // Adjust this based on your backend response structure
+
+            console.log(jwtToken);
+            // setToken(jwtToken);
+            // localStorage.setItem("token", jwtToken);
+            dispatch(setToken(jwtToken));
+
+            
             console.log(userId);
             dispatch(setId(userId));
+
+            // console.log("saved",tokenSaved);
+            // console.log("saved",studIdSaved);
 
             alert("Login Successfully");
             setUsername("");

@@ -13,10 +13,12 @@ function Student() {
   const [students, setStudents] = useState([]);
   const [age, setAge] = useState("");
   const [college, setCollege] = useState([]);
-  const studId = useSelector((state) => state.id.value);
+
+  const studId = useSelector((state) => state.storeData.id);
+  const token = useSelector((state) => state.storeData.token);
 
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Assuming token is stored in localStorage
+    //const token = localStorage.getItem("token"); // Assuming token is stored in localStorage
 
     if (!token) {
       alert("Unauthorized access. Please log in.");
@@ -28,7 +30,7 @@ function Student() {
 
   // Load students
   async function Load() {
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
     const axiosInstance = axios.create({
       baseURL: "http://localhost:8089",
       headers: {
@@ -42,7 +44,7 @@ function Student() {
   // Save student
   async function save(event) {
     event.preventDefault();
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
     console.log(token);
     
     console.log(studId);
