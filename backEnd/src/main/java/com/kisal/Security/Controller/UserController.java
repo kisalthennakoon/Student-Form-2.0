@@ -42,6 +42,7 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody User user){
         log.info("Login user: {}", user);
         if(userService.verify(user)){
+            log.info("User verified: {}", user);
             Map<String, Object> map = new HashMap<>();
             map.put("token",jwtService.generateToken(user.getUsername()));
             map.put("id",userService.getUser(user.getUsername()).getId());
@@ -49,6 +50,7 @@ public class UserController {
             return ResponseEntity.ok(map);
             //return ResponseEntity.ok(jwtService.generateToken(user.getUsername()));
         }else{
+            log.info("User not verified: {}", user);
             return ResponseEntity.badRequest().build();
         }
     }
